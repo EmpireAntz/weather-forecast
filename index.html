@@ -15,20 +15,15 @@
     <div class="row gx-1">
         <div class="container col">
             <h2>Search for a City:</h2>
-            <form class = "d-grid gap-2">
-                <input placeholder="San Diego...">
+            <form id ="search-weather" class = "d-grid gap-2">
+                <input id = "city-input" placeholder="San Diego...">
                 <button class="btn btn-primary" type="submit" value="submit">Search</button>
             </form>
         </div>
-        <div class="container col ">
-            <h2>Atlanta</h2>
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
+        <div id="city-container" class="col ">
         </div>
     </div>
     <div class="container">
-        <h2>5-Day Forecast</h2>
         <div id ="weather-card-container" class="row gap-3"></div>
     </div>
     </div>

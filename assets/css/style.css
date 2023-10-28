@@ -2,3 +2,6 @@ h1 {
     background:linear-gradient(to right,rgb(169, 174, 230), rgb(41, 59, 214), rgb(17, 7, 114));
     color:white;
 }
+#weather-card-container {
+    margin-left: 2vh;
+}
