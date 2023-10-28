@@ -1,6 +1,6 @@
 var openWeatherAPIKey = 'a0d3f129408d5612ac665943f7214076'
 var openWeatherBaseURL = 'https://api.openweathermap.org/data/2.5/forecast?'
-var geocodingBaseURL = 'http://api.openweathermap.org/geo/1.0/direct?q='
+var geocodingBaseURL = 'https://api.openweathermap.org/geo/1.0/direct?q='
 var lat = 40.586540
 var lon = -122.391678
 var searchBtn = document.getElementById("search-weather")
@@ -49,7 +49,7 @@ function addWeatherCards(data) {
         var windInMPS = fiveDayData.wind.speed
         var windInMPH = (windInMPS * 2.23694).toFixed(1)
         var humidity = fiveDayData.main.humidity
-        var iconUrl = `http://openweathermap.org/img/w/${weatherIcon}.png`
+        var iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`
 
         var cardinnerHTML = `
         <div class="card text-bg-primary mb-3" style="max-width: 11rem;">
