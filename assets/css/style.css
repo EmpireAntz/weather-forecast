@@ -1,7 +1,9 @@
+/*Sets the background for the header to a cool gradient and the text color to white*/
 h1 {
     background:linear-gradient(to right,rgb(169, 174, 230), rgb(41, 59, 214), rgb(17, 7, 114));
     color:white;
 }
+/*sets the margin for the card container so that its not pressed against side of screen at smaller sizes*/
 #weather-card-container {
     margin-left: 2vh;
 }

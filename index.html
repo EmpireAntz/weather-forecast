@@ -4,34 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5 Day Weather Forecast</title>
+    <!--Link for Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--Link for custom CSS file-->
     <link rel="stylesheet" href="assets/css/style.css">
-
 </head>
 <body>
     <header>
+        <!--Header centered with bootstrap-->
         <h1 class="text-center">Weather Dashboard</h1>
     </header>
-    <div class="row gx-1">
-        <div class="container col">
-            <h2>Search for a City:</h2>
-            <form id ="search-weather" class = "d-grid gap-2">
-                <input id = "city-input" placeholder="San Diego...">
-                <button class="btn btn-primary" type="submit" value="submit">Search</button>
-                <div id="city-history"class="d-grid gap-2">
-            </form>
+    <main>
+        <!--Bootstrap row with a gutter adjustment-->
+        <div class="row gx-1">
+            <!--Container for the city search functionality-->
+            <div class="container col">
+                <h2>Search for a City:</h2>
+                <!--Form for user to input city and trigger weather search with grid and gap from bootstrap-->
+                <form id="search-weather" class="d-grid gap-2">
+                    <!--Input field for user to enter city name-->
+                    <input id="city-input" placeholder="San Diego...">
+                    <!--Search button with bootsrap classes for style-->
+                    <button class="btn btn-primary" type="submit" value="submit">Search</button>
+                    <!--Container that will contain buttons for previously searched cities-->
+                    <div id="city-history" class="d-grid gap-2"></div>
+                </form>
             </div>
+             <!--Container to display the weather information of the selected city-->
+            <div id="city-container" class="col"></div>
         </div>
-        <div id="city-container" class="col ">
+         <!--Container adds margins for the cards-->
+        <div class="container">
+            <!--Container to display the 5 day forecast cards with a gap of 3 with bootstrap-->
+            <div id="weather-card-container" class="row gap-3"></div>
         </div>
-    </div>
-    <div class="container">
-        <div id ="weather-card-container" class="row gap-3"></div>
-    </div>
-    </div>
-</div>
-
+    </main>
+    <!--Bootstrap JS file-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!--Custom JS file-->
     <script src="assets/js/index.js"></script>
 </body>
 </html>
