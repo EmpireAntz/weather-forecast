@@ -2,6 +2,9 @@ var openWeatherAPIKey = 'a0d3f129408d5612ac665943f7214076'
 var openWeatherBaseURL = 'https://api.openweathermap.org/data/2.5/forecast?'
 var geocodingBaseURL = 'https://api.openweathermap.org/geo/1.0/direct?q='
 var searchBtn = document.getElementById("search-weather")
+
+loadCityHistory()
+
 searchBtn.addEventListener('submit', function(e) {
     e.preventDefault()
 
@@ -10,6 +13,7 @@ searchBtn.addEventListener('submit', function(e) {
 
     fetch(geocodingURL)
         .then (function(resp){
+
             return resp.json()
         })
 
@@ -28,6 +32,7 @@ searchBtn.addEventListener('submit', function(e) {
             console.log(data)
             addWeatherCards(data)
             updateCityInfo(data)
+            addCityToLocalStorage(data)
         })
 })
 
@@ -86,4 +91,36 @@ function updateCityInfo(data) {
     <p>Humidity: ${humidity} %</p>
     `
     cityContainer.innerHTML = cityInfoHTML
+}
+
+function addCityToLocalStorage() {
+    var userInput = document.getElementById('city-input').value
+    console.log(userInput)
+    var cities = JSON.parse(localStorage.getItem('cities') || '[]')
+    if (!cities.includes(userInput)) {
+        cities.push(userInput)
+        localStorage.setItem('cities', JSON.stringify(cities))
+        displayCity(userInput)
+    }
+
+}
+function displayCity(cityName) {
+    var cityHistory = document.getElementById('city-history')
+    var cityHistBtn = document.createElement("button")
+    cityHistBtn.className = "btn btn-secondary"
+    cityHistBtn.innerText = cityName
+
+    cityHistBtn.addEventListener('click', function() {
+        document.getElementById('city-input').value = cityName
+        searchBtn.click()
+    })
+
+    cityHistory.appendChild(cityHistBtn)
+}
+
+function loadCityHistory() {
+    var cities = JSON.parse(localStorage.getItem('cities') || '[]')
+    cities.forEach(function(cityName) {
+        displayCity(cityName)
+    })
 }
