@@ -1,8 +1,6 @@
 var openWeatherAPIKey = 'a0d3f129408d5612ac665943f7214076'
 var openWeatherBaseURL = 'https://api.openweathermap.org/data/2.5/forecast?'
 var geocodingBaseURL = 'https://api.openweathermap.org/geo/1.0/direct?q='
-var lat = 40.586540
-var lon = -122.391678
 var searchBtn = document.getElementById("search-weather")
 searchBtn.addEventListener('submit', function(e) {
     e.preventDefault()
@@ -45,9 +43,11 @@ function addWeatherCards(data) {
 
         var date = fiveDayData.dt_txt.split(' ')[0]
         var weatherIcon = fiveDayData.weather[0].icon
-        var temp = fiveDayData.main.temp
+        var dayDescription = fiveDayData.weather[0].description.charAt(0).toUpperCase() + fiveDayData.weather[0].description.slice(1)
+        var tempinK = fiveDayData.main.temp
+        var tempinF = ((tempinK - 273.15) * 9/5 + 32).toFixed(0)
         var windInMPS = fiveDayData.wind.speed
-        var windInMPH = (windInMPS * 2.23694).toFixed(1)
+        var windInMPH = (windInMPS * 2.23694).toFixed(0)
         var humidity = fiveDayData.main.humidity
         var iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`
 
@@ -56,9 +56,10 @@ function addWeatherCards(data) {
             <div class="card-header">${date}</div>
             <div class="card-body">
                 <img src="${iconUrl}"/>
-                <p class="card-text">Temp: ${temp}°C</p>
-                <p class="card-text">Wind: ${windInMPH}mph</p>
-                <p class="card-text">Humidity: ${humidity}%</p>
+                <p class="card-text">${dayDescription}</p>
+                <p class="card-text">Temp: ${tempinF} °F</p>
+                <p class="card-text">Wind: ${windInMPH} MPH</p>
+                <p class="card-text">Humidity: ${humidity} %</p>
             </div>
         </div>
     `
@@ -73,15 +74,16 @@ function updateCityInfo(data) {
     var todaysData = data.list[0]
     var city = data.city.name
     var date = todaysData.dt_txt.split(' ')[0]
-    var temp = todaysData.main.temp
+    var tempinK = todaysData.main.temp
+    var tempinF = ((tempinK - 273.15) * 9/5 + 32).toFixed(0)
     var windInMPS = todaysData.wind.speed
-    var windInMPH = (windInMPS * 2.23694).toFixed(1)
+    var windInMPH = (windInMPS * 2.23694).toFixed(0)
     var humidity = todaysData.main.humidity
     var cityInfoHTML = `  
     <h2>${city} ${date}</h2>
-    <p>Temp: ${temp}°C</p>
-    <p>Wind: ${windInMPH}mph</p>
-    <p>Humidity: ${humidity}%</p>
+    <p>Temp: ${tempinF} °F</p>
+    <p>Wind: ${windInMPH} MPH</p>
+    <p>Humidity: ${humidity} %</p>
     `
     cityContainer.innerHTML = cityInfoHTML
 }
