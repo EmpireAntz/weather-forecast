@@ -20,6 +20,10 @@ searchBtn.addEventListener('submit', function(e) {
     fetch(geocodingURL)
         //Requests a response from the server
         .then (function(resp){
+            //If the response is not an OK code it will throw an error
+            if (!resp.ok) {
+                throw new Error(`HTTP error! Status: ${resp.status}`)
+            }
             //Parse the response into JSON data
             return resp.json()
         })
@@ -47,6 +51,10 @@ searchBtn.addEventListener('submit', function(e) {
             updateCityInfo(data)
             //Calls a function that will save the entered city to local storage
             addCityToLocalStorage(data)
+        })
+        //If error is caught the error status will be logged in the console
+        .catch (function(error){
+            console.error(error, "Could not fetch data")
         })
 })
 //Function to display our 5 day forecast in the form of cards for the input city
@@ -149,7 +157,7 @@ function displayCity(cityName) {
     //Button gets a Bootstrap class of btn and btn-secondary to style it 
     cityHistBtn.className = "btn btn-secondary"
     //Sets the text of the button to the user city input
-    cityHistBtn.innerText = cityName
+    cityHistBtn.innerText = cityName.charAt(0).toUpperCase() + cityName.slice(1)
     //Add an event listener to the button container 
     cityHistBtn.addEventListener('click', function() {
         //Sets our input value to the value of the button clicked inner text
