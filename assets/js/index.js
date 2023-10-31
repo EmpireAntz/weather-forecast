@@ -178,3 +178,4 @@ function loadCityHistory() {
         displayCity(cityName)
     })
 }
+
